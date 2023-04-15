@@ -590,6 +590,14 @@ footer p{
         display: flex;
         flex-direction: column;
     }
+    
+    .bookTitle{
+        max-width: 20rem;
+    }
+
+    hr{
+        width: 50%;
+    }
 
 
 
