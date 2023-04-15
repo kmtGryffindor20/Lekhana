@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../static/script.js"></script>
+    <link rel="icon" href="../static/images/lekhana_favicon.png">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville&family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>Lekhana - {{ search }}</title>
+</head>
+<body >
+
+    <header>
+            
+        <nav class="nav-bar black">
+            <img id="menu" onclick='toggleMenu()' style="height: 30px; width: 30px;" src="../static/images/hamburger-icon.png" alt="=">
+            <div class="logo">
+                <a href="{{url_for('home')}}">
+                    <img src="../static/images/lekhana_logp.png" alt="Lekhana">
+                </a>
+            </div> 
+            
+            <ul class="nav-links">
+                <li><a href="{{url_for('home')}}">HOME</a></li>
+                <li><a href="{{url_for('recommend')}}">RECOMMENDATIONS</a></li>
+                <li><a href="{{url_for('home')}}#Trending">TRENDING</a></li>
+                <li><a href="">LOGIN</a></li>
+            </ul>
+
+            
+        </nav>
+        </header>
+
+    <h2 class="searchTitle">: {{ search }}</h1>
+
+        <br>
+
+        <div class="bookHolder"> 
+            {% for item in data['items'] %}
+            <div class="template">
+                {%if 'authors' in item['volumeInfo']:%}
+                <div class="book">
+                    {%if 'imageLinks' in item['volumeInfo']%}
+                    <img class="bookImg" src="{{item['volumeInfo']['imageLinks']['thumbnail']}}" alt="No Image Available">
+                    {%else%}
+                    <img class="bookImg" src="" alt="No Image Available">
+                    {%endif%}
+                    <div class="details">
+                        <a class="bookTitle" href="{{url_for('get_book', book_name = item['volumeInfo']['title'], id=item['id'])}}"><h2>{{item['volumeInfo']['title'].title()}}</h2></a>
+                        <h4 class="author">by {{item['volumeInfo']['authors'][0]}}</h4>
+                        <br>
+                    </div>
+                    
+                </div>
+                <div class="bookRating">
+                    {%if item['volumeInfo']['averageRating'] != "" and 'averageRating' in item['volumeInfo'] %}
+                        <h3 class="stars">{{item['volumeInfo']['averageRating']}}</h3>
+                        <img class="star-icon" src="../static/images/star-icon.png" alt="Stars">
+                    {% else %}
+                        <h3 class="stars">(No Rating)</h3>
+                    {% endif %}
+                </div>
+                {%endif%}
+            </div>
+            <hr>
+            {%endfor%}
+
+
+        </div>
+
+</body>
+</html>

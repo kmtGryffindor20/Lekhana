@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../static/script.js"></script>
+    <link rel="icon" href="../static/images/lekhana_favicon.png">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville&family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>Lekhana - {{book_name}}</title>
+</head>
+<body>
+    <div>
+        <header>
+            
+            <nav class="nav-bar black">
+                <img id="menu" onclick='toggleMenu()' style="height: 30px; width: 30px;" src="../static/images/hamburger-icon.png" alt="=">
+                <div class="logo">
+                    <a href="{{url_for('home')}}">
+                        <img src="../static/images/lekhana_logp.png" alt="Lekhana">
+                    </a>
+                </div> 
+                
+                <ul class="nav-links">
+                    <li><a href="{{url_for('home')}}">HOME</a></li>
+                    <li><a href="{{url_for('recommend')}}">RECOMMENDATIONS</a></li>
+                    <li><a href="{{url_for('home')}}#Trending">TRENDING</a></li>
+                    <li><a href="">LOGIN</a></li>
+                </ul>
+
+                
+            </nav>
+            </header>
+    
+        <div class="bookDetails">
+            <div class="left_book_place">
+                <img class="bookThumbnail" src="{{thumbnail}}" alt="No Image Available">
+                <div class="bookLinks Sticky">
+                    <h3 class="getBook">Get Book</h3>
+                    <ul>
+                        <li> <a href="{{flipkart_link}}"><img src="../static/images/flipkart-icon.png" alt="fkart"></a></li>
+                        <li><a href="{{amazon_link}}"><img src="../static/images/amazon-logo" alt="amz"></a></li>
+                        <li><a href="{{info}}"><img src="../static/images/google-books-logo.jpg" alt="books"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="HeadingsAndDetails">
+                <h1 id="bookTitle">{{book_name}}</h1>
+                <h2 class="authorName">{{author}}  ({{year}})</h2>
+                <div class="rating">
+                    <h3 class="company">Google Books</h3>
+                    {%if rating != "" and hasAverageRating %}
+                        <h3 class="stars">{{rating}}</h3>
+                        <img class="star-icon" src="../static/images/star-icon.png" alt="Stars">
+                    {% else %}
+                        <h3 class="stars">(No Rating)</h3>
+                    {% endif %}
+                </div>
+                <p class="description">{{description}}</p>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+</html>

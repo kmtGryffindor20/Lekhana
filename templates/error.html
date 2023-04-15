@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+            
+        <nav class="nav-bar black">
+            <img id="menu" onclick='toggleMenu()' style="height: 30px; width: 30px;" src="../static/images/hamburger-icon.png" alt="=">
+            <div class="logo">
+                <a href="{{url_for('home')}}">
+                    <img src="../static/images/lekhana-logo.png" alt="Lekhana">
+                </a>
+            </div> 
+            
+            <ul class="nav-links">
+                <li><a class="active" href="{{url_for('home')}}">HOME</a></li>
+                <li><a href="{{url_for('recommend')}}">RECOMMENDATIONS</a></li>
+                <li><a href="#Trending">TRENDING</a></li>
+                <li><a href="">LOGIN</a></li>
+            </ul>
+
+            
+        </nav>
+        </header>
+    <br>
+    <br>
+    <br>
+    <center>
+    <h1>OOPs</h1>
+    <h2>An Error Ocuured</h2>
+    <h2>Try Reloading the page</h2>
+    </center>
+</body>
+</html>
