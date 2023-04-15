@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="../static/script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../static/images/lekhana_favicon.png">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville&family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>Lekhana</title>
+
+
+</head>
+<body>
+    <div>
+        <header>
+            
+            <nav class="nav-bar black">
+                <img id="menu" onclick='toggleMenu()' style="height: 30px; width: 30px;" src="../static/images/hamburger-icon.png" alt="=">
+                <div class="logo">
+                    <a href="{{url_for('home')}}">
+                        <img src="../static/images/lekhana-logo.png" alt="Lekhana">
+                    </a>
+                </div> 
+                
+                <ul class="nav-links">
+                    <li><a class="active" href="{{url_for('home')}}">HOME</a></li>
+                    <li><a href="{{url_for('recommend')}}">RECOMMENDATIONS</a></li>
+                    <li><a href="#Trending">TRENDING</a></li>
+                    <li><a href="">LOGIN</a></li>
+                </ul>
+
+                
+            </nav>
+            </header>
+
+            <div class="welcome black">
+                <br>
+                <h1>Discover a whole galaxy of books.</h1>
+                <h2>Find your next best read here!</h2>
+                <br>
+            <center>
+            <div class="search-bar">
+                <form action="{{ url_for('get_data') }}" method="post">
+                    {{ form.csrf_token }}
+                    {{ form.search(size=500) }}
+                    
+                    <input class="search-icon" type="image" src="../static/images/search-icon.png" alt="Search">
+                </form>
+                <br>
+            </div>
+            </center>
+            </div>
+            <div class="trending" id="Trending">
+                <div class="bookHolder">
+                    <h1 style="font-family: 'Baskerville',serif;">New York Times Bestsellers</h1>
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        {% for category in books %}
+                        {%for all_books in category['books']%}
+                        {%if category['books'].index(all_books) == 0 and books.index(category) == 0%}
+                        <div class="book fade first_book">
+                            <img class="bookImg" src="{{all_books['book_image']}}" alt="No Image Available">
+                            <p>#{{category['books'].index(all_books)+1}} in {{category['list_name']}}</p>
+                            <div class="details">
+                                <a class="trendBookTitle" href="{{all_books['amazon_product_url']}}"><h2>{{all_books['title'].title()}}</h2></a>
+                                <h4 class="author">by {{all_books['author']}}</h4>
+                                <p>{{all_books['description']}}</p>
+                                <br>
+                            </div>
+                        </div>
+                        {%else%}
+                        <div class="book fade">
+                            <img class="bookImg" src="{{all_books['book_image']}}" alt="No Image Available">
+                            <p>#{{category['books'].index(all_books)+1}} in {{category['list_name']}}</p>
+                            <div class="details">
+                                <a class="trendBookTitle" href="{{all_books['amazon_product_url']}}"><h2>{{all_books['title'].title()}}</h2></a>
+                                <h4 class="author">by {{all_books['author']}}</h4>
+                                <p>{{all_books['description']}}</p>
+                                <br>
+                            </div>
+                        </div>
+                        {%endif%}
+                        {%endfor%}
+                        {%endfor%}
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+            </div>
+        <footer class="black">
+            <a class="links" href="https://www.linkedin.com/in/kaustubh-mani-tripathi-9b465b258/">LinkedIn</a>
+            <a class="links" href="https://www.copsiitbhu.co.in/">COPs</a>
+            <a class="links" href="https://github.com/kmtGryffindor20">Github</a>
+            <br>
+            <br>
+            <p>Created by Kaustubh Mani Tripathi - IIT BHU</p>
+        </footer>
+    </div>
+</body>
+</html>
