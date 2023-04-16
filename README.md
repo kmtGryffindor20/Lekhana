@@ -39,6 +39,8 @@ Features:
       -Book Searching
             The website uses Google Books API to search for the query entered in the search box provided.
             The search results are listed in descending order of their ratings on the Google Books API.
+            
+            ![Website Preview](Screenshot%202023-04-17%20012940).png
           
       -Book Details
             Each book has a dynamically created details page which lists important details of the book.
