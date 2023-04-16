@@ -33,21 +33,22 @@
             </ul>
 
             
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                <ul>
-                <div class="alert alert-success" role="alert">
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-                </div>
-                </ul>
-                {% endif %}
-                {% endwith %}
+            
 
 
         </nav>
         </header>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    <div class="alert alert-success" role="alert">
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+    </div>
+    </ul>
+    {% endif %}
+    {% endwith %}
     <section class="vh-100 gradient-custom">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
