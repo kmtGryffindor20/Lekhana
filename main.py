@@ -1,4 +1,3 @@
-import json
 import re
 import random
 from xml.dom import ValidationErr
@@ -140,8 +139,7 @@ def search_query(query, number_of_results):
 
     GOOGLE_BOOKS_ENDPOINT = "https://www.googleapis.com/books/v1/volumes"
 
-    # GOOGLE_BOOKS_API_KEY = os.environ.get("GOOGLE_BOOKS_API_KEY")
-    GOOGLE_BOOKS_API_KEY = "AIzaSyARgjRo6TXZl3Vk-yznmmwNHnOL3-0aS4c"
+    GOOGLE_BOOKS_API_KEY = os.environ.get("GOOGLE_BOOKS_API_KEY")
     params = {
         "q": query,
         "maxResults": number_of_results,
@@ -156,8 +154,8 @@ def search_query(query, number_of_results):
 
 def get_trending():
     BESTSELLER_API_ENDPOINT = "https://api.nytimes.com/svc/books/v3/lists/overview.json"
-    # BESTSELLER_API_KEY = os.environ.get("BESTSELLER_API_KEY")
-    BESTSELLER_API_KEY = "3RXXHOv35rDc4uoDVYHVOBnryX0r3f4V"
+    BESTSELLER_API_KEY = os.environ.get("BESTSELLER_API_KEY")
+
 
     params = {
         "api-key": BESTSELLER_API_KEY,
