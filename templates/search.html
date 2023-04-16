@@ -42,7 +42,6 @@
         <div class="bookHolder"> 
             {% for item in data['items'] %}
             <div class="template">
-                {%if 'authors' in item['volumeInfo']:%}
                 <div class="book">
                     {%if 'imageLinks' in item['volumeInfo']%}
                     <img class="bookImg" src="{{item['volumeInfo']['imageLinks']['thumbnail']}}" alt="No Image Available">
@@ -51,8 +50,10 @@
                     {%endif%}
                     <div class="details">
                         <a class="bookTitle" href="{{url_for('get_book', book_name = item['volumeInfo']['title'], id=item['id'])}}"><h2>{{item['volumeInfo']['title'].title()}}</h2></a>
+                        {%if 'authors' in item['volumeInfo'] %}
                         <h4 class="author">by {{item['volumeInfo']['authors'][0]}}</h4>
                         <br>
+                        {%endif%}
                     </div>
                     
                 </div>
@@ -63,9 +64,7 @@
                     {% else %}
                         <h3 class="stars">(No Rating)</h3>
                     {% endif %}
-                {%endif%}
                 </div>
-               
             </div>
             <hr>
             {%endfor%}
