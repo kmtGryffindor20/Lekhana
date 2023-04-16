@@ -2,10 +2,39 @@ import json
 import random
 from xml.dom import ValidationErr
 import requests
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import StringField
+# import sqlite3
+from flask_sqlalchemy import SQLAlchemy
 import os
+
+
+app = Flask(__name__)
+
+app.secret_key = "abcd"
+
+#creating the DB
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://users.db'
+
+#initializing DB
+
+# db = SQLAlchemy(app)
+
+# class Users(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(250), nullable = False)
+#     email = db.Column(db.String(250), nullable=False, unique=True)
+
+#     #create a string
+
+#     def __repr__(self):
+#         return '<Name %r>' % self.name
+    
+
+
+
+
 
 
 def validate_search(form, field):
@@ -49,10 +78,6 @@ def get_trending():
     print(response.url)
     return data
 
-app = Flask(__name__)
-
-app.secret_key = "abcd"
-
 
 
 
@@ -85,18 +110,18 @@ def get_data():
         else:
             return render_template('index.html', form=form)
 
-@app.route("/<book_name>/<id>", methods=["GET"])
+@app.route("/<book_name>/<id>", methods=["GET", "POST"])
 def get_book(book_name, id):
     data = search_query(id, 40)
-    # try:
-    #     image = data['items'][0]['volumeInfo']['imageLinks']['thumbnail']
-    # except KeyError:
-    #     data['items'][0]['volumeInfo']['imageLinks'] = "#"
     book = {}
     for item in data['items']:
         if item['volumeInfo']['title'] == book_name:
             book = item
             break
+
+    
+
+
     try:
         image = book['volumeInfo']['imageLinks']['thumbnail']
     except KeyError:
@@ -146,9 +171,47 @@ def get_book(book_name, id):
     else:
         description = book['volumeInfo']['description']
 
+    if 'publishedDate' in book['volumeInfo']:
+        year = book['volumeInfo']['publishedDate'].split('-')[0]
+    else:
+        year = ""
 
     flipkart = f"https://www.flipkart.com/search?q={book_name}+{book['volumeInfo']['authors'][0]}"
     amazon = f"https://www.amazon.in/s?k={book_name}+{book['volumeInfo']['authors'][0]}"
+
+    # if request.method == "POST":
+    #     isFav = request.form.fav
+    #     isFav = isFav.value()
+
+    #     if isFav == "0":
+    #         return redirect('book.html', 
+    #                        book_name=book_name,  
+    #                        amazon_link = amazon, 
+    #                        flipkart_link=flipkart,
+    #                        info=book['volumeInfo']['infoLink'],
+    #                        thumbnail=thumbnail,
+    #                        author=book['volumeInfo']['authors'][0],
+    #                        year=year,
+    #                        rating=book['volumeInfo']['averageRating'],
+    #                        description=description,
+    #                        id = id,
+    #                        fav_icon="../static/images/fav-no-fill.png")
+    #     else:
+    #         return redirect('book.html', 
+    #                        book_name=book_name,  
+    #                        amazon_link = amazon, 
+    #                        flipkart_link=flipkart,
+    #                        info=book['volumeInfo']['infoLink'],
+    #                        thumbnail=thumbnail,
+    #                        author=book['volumeInfo']['authors'][0],
+    #                        year=year,
+    #                        rating=book['volumeInfo']['averageRating'],
+    #                        description=description,
+    #                        id = id,
+    #                        fav_icon="../static/images/fav-fill.png")
+
+
+
     return render_template('book.html', 
                            book_name=book_name,  
                            amazon_link = amazon, 
@@ -156,9 +219,11 @@ def get_book(book_name, id):
                            info=book['volumeInfo']['infoLink'],
                            thumbnail=thumbnail,
                            author=book['volumeInfo']['authors'][0],
-                           year=book['volumeInfo']['publishedDate'].split('-')[0],
+                           year=year,
                            rating=book['volumeInfo']['averageRating'],
-                           description=description )
+                           description=description,
+                           id = id,
+                           fav_icon="../static/images/fav-no-fill.png")
 
 
 
