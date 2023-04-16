@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="../static/script.js"></script>
     <link rel="icon" href="../static/images/lekhana_favicon.png">
     <link rel="stylesheet" href="../static/styles.css">
@@ -17,12 +18,14 @@
         <header>
             
             <nav class="nav-bar black">
-                <img id="menu" onclick='toggleMenu()' style="height: 30px; width: 30px;" src="../static/images/hamburger-icon.png" alt="=">
-                <div class="logo">
-                    <a href="{{url_for('home')}}">
-                        <img src="../static/images/lekhana_logp.png" alt="Lekhana">
-                    </a>
-                </div> 
+                <div style="display: flex; flex-direction: row; justify-content: space-between; height: 80px;">
+                    <img id="menu" onclick='toggleMenu()' style="height: 30px; width: 30px;" src="../static/images/hamburger-icon.png" alt="=">
+                    <div class="logo">
+                        <a href="{{url_for('home')}}">
+                            <img src="../static/images/lekhana_logp.png" alt="Lekhana">
+                        </a>
+                    </div> 
+                </div>
                 
                 <ul class="nav-links">
                     <li><a href="{{url_for('home')}}">HOME</a></li>
@@ -48,7 +51,13 @@
                 </div>
             </div>
             <div class="HeadingsAndDetails">
-                <h1 id="bookTitle">{{book_name}}</h1>
+                <h1 id="bookTitle">{{book_name}}
+                    <span>
+                        <form action="{{url_for('get_book', book_name = book_name, id=id)}}" method="POST">
+                            <input name="fav" class="fav-icon" value="0" style="width: 32px; height: 32px;" onclick="fillColor()" type="image" src="{{fav_icon}}" alt="FAV">
+                        </form>
+                    </span>
+                </h1>
                 <h2 class="authorName">{{author}}  ({{year}})</h2>
                 <div class="rating">
                     <h3 class="company">Google Books</h3>

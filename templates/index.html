@@ -20,12 +20,15 @@
         <header>
             
             <nav class="nav-bar black">
-                <img id="menu" onclick='toggleMenu()' style="height: 30px; width: 30px;" src="../static/images/hamburger-icon.png" alt="=">
-                <div class="logo">
-                    <a href="{{url_for('home')}}">
-                        <img src="../static/images/lekhana-logo.png" alt="Lekhana">
-                    </a>
-                </div> 
+                <div style="display: flex; flex-direction: row; justify-content: space-between; height: 80px;">
+                    <img id="menu" onclick='toggleMenu()' style="height: 30px; width: 30px;" src="../static/images/hamburger-icon.png" alt="=">
+                    <div class="logo">
+                        <a href="{{url_for('home')}}">
+                            <img src="../static/images/lekhana_logp.png" alt="Lekhana">
+                        </a>
+                    </div> 
+                </div>
+
                 
                 <ul class="nav-links">
                     <li><a class="active" href="{{url_for('home')}}">HOME</a></li>
