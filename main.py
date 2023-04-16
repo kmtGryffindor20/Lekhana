@@ -1,4 +1,5 @@
 import json
+import re
 import random
 from xml.dom import ValidationErr
 import requests
@@ -54,10 +55,19 @@ def load_user(user_id):
 
 
 
-# class UserForm(FlaskForm):
-#     name = StringField("Username", validators=[DataRequired()])
-#     email = StringField("Email", validators=[DataRequired()])
-#     password = PasswordField("Password", validators=[DataRequired()])
+def validate_password(password):  
+    regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
+    if(regex.search(password) == None):
+        return False
+    if len(password) < 8:  
+        return False  
+    if not re.search("[a-z]", password):  
+        return False  
+    if not re.search("[A-Z]", password):  
+        return False  
+    if not re.search("[0-9]", password):  
+        return False  
+    return True 
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -70,6 +80,9 @@ def sign_up():
 
         if repeat_password != password:
             flash("Passwords don't match")
+        
+        elif not validate_password(password):
+            flash("Password must be of atleast 8 characters long and must contain 1) A lower case letter 2) An upper case letter 3) A digit 4) A special character like @_!#$%^&*()<>?/\|}{~:")
         else:
             user = Users.query.filter_by(email=email)
 
