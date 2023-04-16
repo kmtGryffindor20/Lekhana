@@ -1,3 +1,6 @@
+
+/* ALL */
+
 body{
     margin: 0px;
     font-family: 'Josefin Sans', sans-serif;
@@ -23,27 +26,6 @@ header{
     background-image: linear-gradient(45deg,black, rgb(14, 13, 13));
     background-repeat: no-repeat;
     color:antiquewhite;
-}
-
-.welcome
-{
-    /* background-color: aliceblue; */
-    background-image: url(./images/bg-image.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    color:antiquewhite;
-    text-shadow: 1px black;
-    padding-bottom: 500px;
-}
-
-.welcome h1{
-    color: antiquewhite;
-    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
-}
-
-.welcome h2{
-    color: antiquewhite;
-    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
 }
 
 h1{
@@ -102,19 +84,89 @@ h2{
 }
 
 
-.Main{
-    box-sizing: inherit;
-    width: 100%;
 
-    height: 100%;
-    margin: 0;
-    padding: 0;
+footer{
+    text-align: center;
+    padding-top: 3.125rem;
+    padding-bottom: 3.125rem;
+}
+
+footer a{
+    color: rgb(180, 188, 196);
+    margin-right: 1.875rem;
+    text-decoration: none;
+}
+
+footer a:hover{
+    text-decoration: underline;
+}
+
+footer p{
+    font-family: 'Baskerville', serif;
+    color: rgb(180, 188, 196);
 }
 
 
-.welcome{
+#menu{
+    display: none;
+    cursor: pointer;
+    position: relative;
+    align-items: center;
+    top: 25px;
+    left: 20px;
+}
+
+.menu{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 120px;
+    /* display: none; */
+   
+}
+
+.menu li{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.menu li a{
+    color: gray;
+    text-decoration: none;
+}
+
+.menu li a:hover{
+    color: antiquewhite;
+}
+
+
+/* INDEX PAGE */
+
+
+
+
+.welcome
+{
+    /* background-color: aliceblue; */
+    background-image: url(./images/bg-image.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color:antiquewhite;
+    text-shadow: 1px black;
+    padding-bottom: 500px;
+
     padding: 6.25rem;
     text-align: center;
+}
+
+.welcome h1{
+    color: antiquewhite;
+    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
+}
+
+.welcome h2{
+    color: antiquewhite;
+    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
 }
 
 .author{
@@ -134,6 +186,7 @@ h2{
 form{
     display: flex;
     flex-direction: row;
+    display: inline;
 }
 
 .search-icon{
@@ -150,10 +203,86 @@ form{
     font-family: 'Josefin Sans', sans-serif;
 }
 
-
-form{
-    display: inline;
+.trendBookTitle{
+    max-width: 40%;
+    color: black;
+    text-decoration: none !important;
 }
+
+.trendBookTitle h2:hover{
+    text-decoration: underline;
+}
+
+.trending {
+    max-width: 62.5rem;
+    position: relative;
+    margin: auto;
+    width: 100%;
+    color: #292424;
+  }
+
+
+  .bookHolder h1{
+    font-family: 70px;
+}
+
+
+.trending .bookHolder{
+    margin-top: 6.25rem;
+    
+}
+
+.trending .book{
+    display: none;
+}
+
+.trending .first_book{
+    display: block;
+}
+
+.prev, .next {
+    cursor: pointer;
+    width: auto;
+    position: absolute;
+    top: 50%;
+    margin-top: 1.375rem;
+    padding: 1rem;
+    color: black;
+    font-weight: bold;
+    font-size: 1.125rem;
+    transition: 0.6s ease;
+    border-radius: 0 0.1875rem 0.1875rem 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 0.1875rem 0 0 0.1875rem;
+}
+.prev{
+    left: 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+
+
+/* SEARCH PAGE */
+
+
 
 .searchTitle{
     padding: 2.5rem 1.25rem 1.25rem 6.25rem;
@@ -237,17 +366,6 @@ hr{
     max-width: 50rem;
 }
 
-.trendBookTitle{
-    max-width: 40%;
-    color: black;
-    text-decoration: none !important;
-}
-
-.trendBookTitle h2:hover{
-    text-decoration: underline;
-}
-
-
 .bookThumbnail{
     height: 25.5625rem;
     width: 14.0625rem;
@@ -298,12 +416,28 @@ hr{
 
 .company{
     margin-top: 0;
-   
 }
 
 .bookLinks img:hover{
     transform: scale(1.4);
 }
+
+
+
+/* SIGNUP PAGE */
+
+.signupForm{
+    align-items: center;
+    padding: 100px;
+}
+
+
+
+
+
+/* BOOK PAGE */
+
+
 
 .description{
     font-size: x-large;
@@ -352,124 +486,9 @@ hr{
     transition: transform .2s;
 }
 
-.trending {
-    max-width: 62.5rem;
-    position: relative;
-    margin: auto;
-    width: 100%;
-    color: #292424;
-  }
 
 
-  .bookHolder h1{
-    font-family: 70px;
-}
-
-
-.trending .bookHolder{
-    margin-top: 6.25rem;
-    
-}
-
-.trending .book{
-    display: none;
-}
-
-.trending .first_book{
-    display: block;
-}
-
-.prev, .next {
-    cursor: pointer;
-    width: auto;
-    position: absolute;
-    top: 50%;
-    margin-top: 1.375rem;
-    padding: 1rem;
-    color: black;
-    font-weight: bold;
-    font-size: 1.125rem;
-    transition: 0.6s ease;
-    border-radius: 0 0.1875rem 0.1875rem 0;
-    user-select: none;
-}
-
-.next {
-    right: 0;
-    border-radius: 0.1875rem 0 0 0.1875rem;
-}
-.prev{
-    left: 0;
-}
-
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.2);
-}
-
-
-.fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-
-@keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-}
-
-footer{
-    text-align: center;
-    padding-top: 3.125rem;
-    padding-bottom: 3.125rem;
-}
-
-footer a{
-    color: rgb(180, 188, 196);
-    margin-right: 1.875rem;
-    text-decoration: none;
-}
-
-footer a:hover{
-    text-decoration: underline;
-}
-
-footer p{
-    font-family: 'Baskerville', serif;
-    color: rgb(180, 188, 196);
-}
-
-
-#menu{
-    display: none;
-    cursor: pointer;
-    position: relative;
-    align-items: center;
-    top: 25px;
-    left: 20px;
-}
-
-.menu{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    margin-left: 120px;
-    /* display: none; */
-   
-}
-
-.menu li{
-    padding-bottom: 10px;
-    padding-top: 10px;
-}
-
-.menu li a{
-    color: gray;
-    text-decoration: none;
-}
-
-.menu li a:hover{
-    color: antiquewhite;
-}
+/* MEDIA QUERIES */
 
 
 
