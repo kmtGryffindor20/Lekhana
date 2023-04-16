@@ -13,12 +13,19 @@ Introduction:
 Tech-Stack Used:
 
       -Python to create the functionality of the site including API requests, Database Management, and Flask Framework.
+      
       -Flask(Python) to build up a framework to dynamically create pages for the website. Flask-Login is used for facilitating user management.
+      
       -Google Books API & Books API(New York Times) to get data of the books searched and the books to be recommended. Also gets New York Times Bestsellers.
+      
       -SQLAlchemy(Python-Flask) to create a database system to store the user's login details and also their book preferences.
+      
       -HTML to build the templates which Flask uses for building up sites.
+      
       -CSS to give styling to the HTML framework and give the site a visual appeal.
+      
       -JavaScript to control the simple events on the HTML webpage.
+      
       -Render.com to deploy the web application.
       
 Features:
