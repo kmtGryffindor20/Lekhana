@@ -3,14 +3,14 @@ A web application that uses Google Books API to form a huge collection of books 
 
 #------------------------------------------ DebugIT 2023 ---------------------------------------------#
 
-Introduction: 
+#Introduction: 
 
       A book recommnedation platform that tracks the user's viewing history and recommends similar books to the user.
       This website creates a database of users and their preferences of books and accordingly recommends similar books to them.
       It also has a book searching facility.
       
 
-Tech-Stack Used:
+#Tech-Stack Used:
 
       -Python to create the functionality of the site including API requests, Database Management, and Flask Framework.
       
@@ -28,18 +28,18 @@ Tech-Stack Used:
       
       -Render.com to deploy the web application.
       
-Features:
+#Features:
 
-      -Responsive
+      -##Responsive
             The complete website is responsive, i.e, changes visuals as per the screen size of the user.
    ![Screenshot 2023-04-17 015802](https://user-images.githubusercontent.com/129510465/232340302-935305fb-4c77-4d44-9b32-d38a176627ff.png)
 
             
       
-      -Navigation Bar
+      -##Navigation Bar
             The navigation bar provides a quick way to move through different sections of the website.
          
-      -Book Searching
+      -##Book Searching
             The website uses Google Books API to search for the query entered in the search box provided.
             The search results are listed in descending order of their ratings on the Google Books API.
             
@@ -47,7 +47,7 @@ Features:
 ![2](https://user-images.githubusercontent.com/129510465/232339734-7313a8c5-7fb3-4af1-a910-ffe6f115a797.png)
 
           
-      -Book Details
+      -##Book Details
             Each book has a dynamically created details page which lists important details of the book.
             It also provides links to Amazon, Flipkart and Google Books for the book.
             
@@ -57,14 +57,14 @@ Features:
             
             
             
-      -Trending Books
+      -##Trending Books
             The New York Times Books API gives the Latest Bestsellers of all categories.
             They are shown at the homepage as a slider giving slight details about them.
             The titles redirect to their Amazon buying link.
    ![3](https://user-images.githubusercontent.com/129510465/232339741-d3d03dcf-9cf5-4838-b76d-c0f883cc633f.png)
 
             
-      -Recommendation System
+      -##Recommendation System
             The recommendation system works by getting hold of the most viewed genre and the top two most viewed authors by the user.
             It then gets the books for all these constraints, merges them together and shows them in descending order of their rating.
              
@@ -72,7 +72,7 @@ Features:
 
             
             
-      -User Login System
+      -##User Login System
             The website uses Flask-Login and SQLAlchemy together to create a simple yet effective login system.
             It allows login for only registered users and users can sign up on the sign up page.
             The password also has constraints so that users don't enter easily guessable password.
@@ -83,17 +83,17 @@ Features:
 
 
 
-Scopes and Improvements
+#Scopes and Improvements
       
-      -The Recommendation System can be improved by applying better algorithms.
+      -##The Recommendation System can be improved by applying better algorithms.
       
-      -The user login system can be improved by making it more secure.
+      -##The user login system can be improved by making it more secure.
       
-      -The design of the webpage can be worked upon to give it a more proffessional look.
+      -##The design of the webpage can be worked upon to give it a more proffessional look.
       
 
-Deployment Link
+#Deployment Link
 
-      -The website has been deployed on render.com free version and thus sometimes gets server error on the hosting site.
-      Link: lekhana.onrender.com
+      -##The website has been deployed on render.com free version and thus sometimes gets server error on the hosting site.
+      ##Link: [lekhana.onrender.com](lekhana.onrender.com)
       
