@@ -50,3 +50,17 @@ function toggleMenu(){
     }
     
 }
+
+function fillColor(){
+    let icon = document.getElementsByClassName("fav-icon");
+    if (icon[0].value == "1")
+    {
+        icon[0].src = "../static/images/fav-no-fill.png";
+        icon[0].value = "0";
+    }
+    else
+    {
+        icon[0].value = "1";
+        icon[0].src = "../static/images/fav-fill.png";
+    }
+}

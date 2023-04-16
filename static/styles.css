@@ -1,7 +1,7 @@
 body{
     margin: 0px;
     font-family: 'Josefin Sans', sans-serif;
-    background-image: url(./images/bg2-image.avif);
+    background-image: url(./images/bg2-image.jpg);
     /* background-repeat: no-repeat; */
     color: #000;
     width: 100%;
@@ -33,6 +33,17 @@ header{
     background-repeat: no-repeat;
     color:antiquewhite;
     text-shadow: 1px black;
+    padding-bottom: 500px;
+}
+
+.welcome h1{
+    color: antiquewhite;
+    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
+}
+
+.welcome h2{
+    color: antiquewhite;
+    text-shadow: 2px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;
 }
 
 h1{
@@ -433,8 +444,8 @@ footer p{
     cursor: pointer;
     position: relative;
     align-items: center;
-    top: 65px;
-    left: 30px;
+    top: 25px;
+    left: 20px;
 }
 
 .menu{
@@ -482,6 +493,7 @@ footer p{
     .nav-bar .logo{
         align-self: center;
     }
+
 
     .nav-bar .nav-links{
         display: flex;
@@ -611,4 +623,22 @@ footer p{
 
 
 
+}
+
+@media (max-width:350px){
+    .searchTitle{
+        font-size: 16px;
+    }
+    h1{
+        font-size: 30px;
+    }
+    h2{
+        font-size: 24px;
+    }
+    .next {
+        top: 110px;
+    }
+    .prev{
+        top: 110px;
+    }
 }
