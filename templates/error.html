@@ -23,9 +23,15 @@
             
             <ul class="nav-links">
                 <li><a class="active" href="{{url_for('home')}}">HOME</a></li>
+                {% if current_user.is_authenticated %}
                 <li><a href="{{url_for('recommend')}}">RECOMMENDATIONS</a></li>
-                <li><a href="#Trending">TRENDING</a></li>
-                <li><a href="">LOGIN</a></li>
+                {%endif%}
+                <li><a href="{{url_for('home')}}#Trending">TRENDING</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{url_for('logout')}}">LOGOUT</a></li>
+                {% else %}
+                    <li><a href="{{url_for('login')}}">LOGIN</a></li>
+                {%endif%}
             </ul>
 
             

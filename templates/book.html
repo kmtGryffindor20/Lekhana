@@ -28,10 +28,16 @@
                 </div>
                 
                 <ul class="nav-links">
-                    <li><a href="{{url_for('home')}}">HOME</a></li>
+                    <li><a class="active" href="{{url_for('home')}}">HOME</a></li>
+                    {% if current_user.is_authenticated %}
                     <li><a href="{{url_for('recommend')}}">RECOMMENDATIONS</a></li>
+                    {%endif%}
                     <li><a href="{{url_for('home')}}#Trending">TRENDING</a></li>
-                    <li><a href="">LOGIN</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li><a href="{{url_for('logout')}}">LOGOUT</a></li>
+                    {% else %}
+                        <li><a href="{{url_for('login')}}">LOGIN</a></li>
+                    {%endif%}
                 </ul>
 
                 
@@ -51,17 +57,11 @@
                 </div>
             </div>
             <div class="HeadingsAndDetails">
-                <h1 id="bookTitle">{{book_name}}
-                    <span>
-                        <form action="{{url_for('get_book', book_name = book_name, id=id)}}" method="POST">
-                            <input name="fav" class="fav-icon" value="0" style="width: 32px; height: 32px;" onclick="fillColor()" type="image" src="{{fav_icon}}" alt="FAV">
-                        </form>
-                    </span>
-                </h1>
+                <h1 id="bookTitle">{{book_name}}</h1>
                 <h2 class="authorName">{{author}}  ({{year}})</h2>
                 <div class="rating">
                     <h3 class="company">Google Books</h3>
-                    {%if rating != "" and hasAverageRating %}
+                    {%if rating != "" %}
                         <h3 class="stars">{{rating}}</h3>
                         <img class="star-icon" src="../static/images/star-icon.png" alt="Stars">
                     {% else %}

@@ -27,10 +27,16 @@
             </div>
             
             <ul class="nav-links">
-                <li><a href="{{url_for('home')}}">HOME</a></li>
-                <li><a href="{{url_for('recommend')}}">RECOMMENDATIONS</a></li>
+                <li><a class="" href="{{url_for('home')}}">HOME</a></li>
+                {% if current_user.is_authenticated %}
+                <li><a class="active" href="{{url_for('recommend')}}">RECOMMENDATIONS</a></li>
+                {%endif%}
                 <li><a href="{{url_for('home')}}#Trending">TRENDING</a></li>
-                <li><a href="">LOGIN</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{url_for('logout')}}">LOGOUT</a></li>
+                {% else %}
+                    <li><a href="{{url_for('login')}}">LOGIN</a></li>
+                {%endif%}
             </ul>
 
             
@@ -42,26 +48,26 @@
         <br>
 
         <div class="bookHolder"> 
-            {% for item in data['items'] %}
+            {% for volumeInfo in data %}
             <div class="template">
                 <div class="book">
-                    {%if 'imageLinks' in item['volumeInfo']%}
-                    <img class="bookImg" src="{{item['volumeInfo']['imageLinks']['thumbnail']}}" alt="No Image Available">
+                    {%if 'imageLinks' in volumeInfo %}
+                    <img class="bookImg" src="{{volumeInfo['imageLinks']['thumbnail']}}" alt="No Image Available">
                     {%else%}
                     <img class="bookImg" src="" alt="No Image Available">
                     {%endif%}
                     <div class="details">
-                        <a class="bookTitle" href="{{url_for('get_book', book_name = item['volumeInfo']['title'], id=item['id'])}}"><h2>{{item['volumeInfo']['title'].title()}}</h2></a>
-                        {%if 'authors' in item['volumeInfo'] %}
-                        <h4 class="author">by {{item['volumeInfo']['authors'][0]}}</h4>
+                        <a class="bookTitle" href="{{url_for('get_book', book_name = volumeInfo['title'], id=volumeInfo['infoLink'].split('=')[1][0:12])}}"><h2>{{volumeInfo['title'].title()}}</h2></a>
+                        {%if 'authors' in volumeInfo %}
+                        <h4 class="author">by {{volumeInfo['authors'][0]}}</h4>
                         <br>
                         {%endif%}
                     </div>
                     
                 </div>
                 <div class="bookRating">
-                    {%if item['volumeInfo']['averageRating'] != "" and 'averageRating' in item['volumeInfo'] %}
-                        <h3 class="stars">{{item['volumeInfo']['averageRating']}}</h3>
+                    {%if volumeInfo['averageRating'] != "" and 'averageRating' in volumeInfo %}
+                        <h3 class="stars">{{volumeInfo['averageRating']}}</h3>
                         <img class="star-icon" src="../static/images/star-icon.png" alt="Stars">
                     {% else %}
                         <h3 class="stars">(No Rating)</h3>

@@ -32,14 +32,32 @@
                 
                 <ul class="nav-links">
                     <li><a class="active" href="{{url_for('home')}}">HOME</a></li>
+                    {% if current_user.is_authenticated %}
                     <li><a href="{{url_for('recommend')}}">RECOMMENDATIONS</a></li>
+                    {%endif%}
                     <li><a href="#Trending">TRENDING</a></li>
-                    <li><a href="">LOGIN</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li><a href="{{url_for('logout')}}">LOGOUT</a></li>
+                    {% else %}
+                        <li><a href="{{url_for('login')}}">LOGIN</a></li>
+                    {%endif%}
                 </ul>
 
                 
             </nav>
             </header>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul>
+                <div class="alert alert-success" role="alert">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </div>
+                </ul>
+                {% endif %}
+                {% endwith %}
 
             <div class="welcome black">
                 <br>
