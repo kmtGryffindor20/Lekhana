@@ -204,12 +204,12 @@ hr{
 .bookTitle{
     text-decoration: none !important;
     
-    max-width: 62.5rem;
+    max-width: 60rem;
 }
 
 .bookTitle h2{
     color: black;
-    max-width: 62.5rem;
+    max-width: 60rem;
     justify-content: left;
 }
 
@@ -297,8 +297,10 @@ hr{
 .description{
     font-size: x-large;
     max-width: 43.75rem;
-    justify-content: left;
+    justify-content: center;
+    text-align: justify;
     margin-left: 3.125rem;
+    margin-right: 3.125rem;
     line-height: 1.4;
 }
 
@@ -474,6 +476,7 @@ footer p{
     .nav-bar{
         display: flex;
         flex-direction: column;
+        padding-top: 0;
     }
 
     .nav-bar .logo{
@@ -485,6 +488,8 @@ footer p{
         max-height: 0px;
         flex-direction: column;
         transition: 0.5s;
+        padding: 0;
+        margin: 0;
     }
 
     .nav-bar .nav-links li{
@@ -590,13 +595,18 @@ footer p{
         display: flex;
         flex-direction: column;
     }
-    
+
     .bookTitle{
         max-width: 20rem;
     }
 
     hr{
         width: 50%;
+    }
+
+    .description{
+        margin-left: 2rem;
+        margin-right: 2rem;
     }
 
 
