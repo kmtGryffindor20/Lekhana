@@ -216,34 +216,34 @@ def get_book(book_name, id):
         image = book['volumeInfo']['imageLinks']['thumbnail']
     except KeyError:
         book['volumeInfo']['imageLinks'] = "#"
-
-    genres = ""
-    if 'categories' in book['volumeInfo']:
-        genres = book['volumeInfo']['categories'][0]
-    authors = ""
-    if 'authors' in book['volumeInfo']:
-        authors = book['volumeInfo']['authors'][0]
+    try:
+        genres = ""
+        if 'categories' in book['volumeInfo']:
+            genres = book['volumeInfo']['categories'][0]
+        authors = ""
+        if 'authors' in book['volumeInfo']:
+            authors = book['volumeInfo']['authors'][0]
 
     
-    id = current_user.id
-    user_to_update = Users.query.get_or_404(id)
-    user_genres = user_to_update.genres
-    if user_genres == None:
-        user_genres = genres
-    else:
-        if len(user_genres) < 230:
-            user_genres += f" {genres}"
-    user_to_update.genres = user_genres
+        id = current_user.id
+        user_to_update = Users.query.get_or_404(id)
+        user_genres = user_to_update.genres
+        if user_genres == None:
+            user_genres = genres
+        else:
+            if len(user_genres) < 230:
+                user_genres += f" {genres}"
+        user_to_update.genres = user_genres
 
-    user_authors = user_to_update.authors
-    if user_authors == None:
-        user_authors = authors
-    else:
-        if len(user_authors) < 230:
-            user_authors += f" {authors}"
-    user_to_update.authors = user_authors
+        user_authors = user_to_update.authors
+        if user_authors == None:
+            user_authors = authors
+        else:
+            if len(user_authors) < 230:
+                user_authors += f" {authors}"
+        user_to_update.authors = user_authors
 
-    db.session.commit()
+        db.session.commit()
     
 
     # hasAverageRating='averageRating' in book['volumeInfo']
