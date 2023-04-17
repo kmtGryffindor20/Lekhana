@@ -367,15 +367,16 @@ hr{
 }
 
 .bookThumbnail{
-    height: 25.5625rem;
+    height: 20.5625rem;
     width: 14.0625rem;
-    margin: 6.25rem 6.25rem 0 6.25rem;
+    margin: 6.25rem 6.25rem 6.25rem 6.25rem;
     background-color: #000;
     color: gray;
     border: 0.3125rem solid gray;
     z-index: 1;
     position: sticky;
     top: 12.75rem;
+
 }
 
 .bookDetails{
