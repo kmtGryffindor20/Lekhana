@@ -244,6 +244,8 @@ def get_book(book_name, id):
         user_to_update.authors = user_authors
 
         db.session.commit()
+    except:
+        pass
     
 
     # hasAverageRating='averageRating' in book['volumeInfo']
