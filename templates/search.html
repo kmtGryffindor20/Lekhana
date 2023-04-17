@@ -57,7 +57,7 @@
                     <img class="bookImg" src="" alt="No Image Available">
                     {%endif%}
                     <div class="details">
-                        <a class="bookTitle" href="{{url_for('get_book', book_name = volumeInfo['title'], id=volumeInfo['infoLink'].split('=')[1][0:12])}}"><h2>{{volumeInfo['title'].title()}}</h2></a>
+                        <a class="bookTitle" href="{{url_for('get_book', book_name = volumeInfo['title'], id=volumeInfo['infoLink'].split('=')[1][0:12])}}"><h2>{{volumeInfo['title']}}</h2></a>
                         {%if 'authors' in volumeInfo %}
                         <h4 class="author">by {{volumeInfo['authors'][0]}}</h4>
                         <br>
