@@ -42,8 +42,7 @@ A web application that uses Google Books API to form a huge collection of books 
 ### Book Searching
             The website uses Google Books API to search for the query entered in the search box provided.
             The search results are listed in descending order of their ratings on the Google Books API.
-            
-![Book Searching](1.png)
+![1](https://user-images.githubusercontent.com/129510465/232381382-2cd316ac-9b25-49de-a86a-00929ee185d0.png)
 ![2](https://user-images.githubusercontent.com/129510465/232339734-7313a8c5-7fb3-4af1-a910-ffe6f115a797.png)
 
           
