@@ -244,50 +244,50 @@ def get_book(book_name, id):
         user_to_update.authors = user_authors
 
         db.session.commit()
-    except:
-        pass
+    
+    finally:
     
 
-    # hasAverageRating='averageRating' in book['volumeInfo']
-    # if not hasAverageRating:
-    #     book['volumeInfo']['averageRating'] = ""
+        # hasAverageRating='averageRating' in book['volumeInfo']
+        # if not hasAverageRating:
+        #     book['volumeInfo']['averageRating'] = ""
 
-    if 'averageRating' not in book['volumeInfo']:
-        book['volumeInfo']['averageRating'] = ""
+        if 'averageRating' not in book['volumeInfo']:
+            book['volumeInfo']['averageRating'] = ""
 
-    if 'imageLinks' in book['volumeInfo']:
-        if 'thumbnail' in book['volumeInfo']['imageLinks']:
-            thumbnail = book['volumeInfo']['imageLinks']['thumbnail']
+        if 'imageLinks' in book['volumeInfo']:
+            if 'thumbnail' in book['volumeInfo']['imageLinks']:
+                thumbnail = book['volumeInfo']['imageLinks']['thumbnail']
+            else:
+                thumbnail = ""
         else:
             thumbnail = ""
-    else:
-        thumbnail = ""
-    
 
-    if 'description' not in book['volumeInfo']:
-        description = ""
-    else:
-        description = book['volumeInfo']['description']
 
-    if 'publishedDate' in book['volumeInfo']:
-        year = book['volumeInfo']['publishedDate'].split('-')[0]
-    else:
-        year = ""
+        if 'description' not in book['volumeInfo']:
+            description = ""
+        else:
+            description = book['volumeInfo']['description']
 
-    flipkart = f"https://www.flipkart.com/search?q={book_name}+{book['volumeInfo']['authors'][0]}"
-    amazon = f"https://www.amazon.in/s?k={book_name}+{book['volumeInfo']['authors'][0]}"
+        if 'publishedDate' in book['volumeInfo']:
+            year = book['volumeInfo']['publishedDate'].split('-')[0]
+        else:
+            year = ""
 
-    return render_template('book.html', 
-                           book_name=book_name,  
-                           amazon_link = amazon, 
-                           flipkart_link=flipkart,
-                           info=book['volumeInfo']['infoLink'],
-                           thumbnail=thumbnail,
-                           author=book['volumeInfo']['authors'][0],
-                           year=year,
-                           rating=book['volumeInfo']['averageRating'],
-                           description=description,
-                           id = id)
+        flipkart = f"https://www.flipkart.com/search?q={book_name}+{book['volumeInfo']['authors'][0]}"
+        amazon = f"https://www.amazon.in/s?k={book_name}+{book['volumeInfo']['authors'][0]}"
+
+        return render_template('book.html', 
+                               book_name=book_name,  
+                               amazon_link = amazon, 
+                               flipkart_link=flipkart,
+                               info=book['volumeInfo']['infoLink'],
+                               thumbnail=thumbnail,
+                               author=book['volumeInfo']['authors'][0],
+                               year=year,
+                               rating=book['volumeInfo']['averageRating'],
+                               description=description,
+                               id = id)
 
 
 
