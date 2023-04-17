@@ -232,7 +232,7 @@ def get_book(book_name, id):
             user_genres = genres
         else:
             if len(user_genres) < 230:
-                user_genres += f" {genres}"
+                user_genres += f"-{genres}"
         user_to_update.genres = user_genres
 
         user_authors = user_to_update.authors
@@ -240,7 +240,7 @@ def get_book(book_name, id):
             user_authors = authors
         else:
             if len(user_authors) < 230:
-                user_authors += f" {authors}"
+                user_authors += f"-{authors}"
         user_to_update.authors = user_authors
 
         db.session.commit()
@@ -296,8 +296,8 @@ def recommend():
     id = current_user.id
     user_data = Users.query.get_or_404(id)
     try:
-        genre_data = user_data.genres.split()
-        author_data = user_data.genres.split()
+        genre_data = user_data.genres.split('-')
+        author_data = user_data.authors.split('-')
 
     except:
         authors = ["JK Rowling", "Stephen King", "Paulo Coelho", "Suzanne Collins", "Rick Riordan", "Chetan Bhagat",
