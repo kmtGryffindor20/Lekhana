@@ -81,7 +81,7 @@ A web application that uses Google Books API to form a huge collection of books 
             
    ![Screenshot 2023-04-17 014944](https://user-images.githubusercontent.com/129510465/232339884-83a12200-ec28-4319-9503-212833fc320f.png)            
 
-![Screenshot 2023-04-17 015320](https://user-images.githubusercontent.com/129510465/232340073-74067f31-a8cd-4736-8b16-f9cb4f2d4a34.png)4
+![Screenshot 2023-04-17 015320](https://user-images.githubusercontent.com/129510465/232340073-74067f31-a8cd-4736-8b16-f9cb4f2d4a34.png)
 
 
 
