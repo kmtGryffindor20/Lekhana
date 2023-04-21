@@ -75,6 +75,9 @@ A web application that uses Google Books API to form a huge collection of books 
             The website uses Flask-Login and SQLAlchemy together to create a simple yet effective login system.
             It allows login for only registered users and users can sign up on the sign up page.
             The password also has constraints so that users don't enter easily guessable password.
+            Since the website is deployed on a free plan on Render.com, the server restarts the app
+            clearing all details after some time of inactivity. So the user will face problem in 
+            Logging in. 
             
    ![Screenshot 2023-04-17 014944](https://user-images.githubusercontent.com/129510465/232339884-83a12200-ec28-4319-9503-212833fc320f.png)            
 
@@ -97,7 +100,13 @@ A web application that uses Google Books API to form a huge collection of books 
 
 # Deployment Link
 
-The website has been deployed on render.com free version and thus sometimes gets server error on the hosting site.
 
-[Lekhana](https://lekhana.onrender.com/)
+Since the website is deployed on a free plan on Render.com, the server restarts the app clearing all details after some time of inactivity. It may also sometimes get server error on the hosting site. 
+
+[Lekhana](https://lekhana.onrender.com/) 
+
+
+
+
+
       
