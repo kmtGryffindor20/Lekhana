@@ -1,84 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../static/script.js"></script>
     <link rel="icon" href="../static/images/lekhana_favicon.png">
-    <link rel="stylesheet" href="../static/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baskervville&family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville&family=Josefin+Sans&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../static/styles.css">
     <title>Lekhana - {{ search }}</title>
+
+    <style>
+        .page-link {
+            border-color: var(--text-bg) !important;
+        }
+
+        .active {
+            background-color: var(--text-bg) !important;
+            color: black !important;
+        }
+
+        .pagination-hover-bg {
+            color: var(--text-color) !important;
+        }
+
+        .pagination-hover-border-color {
+            color: var(--text-color) !important;
+        }
+
+        .box-shadow-lg {
+            box-shadow: 0 1rem 3rem rgba(var(--text-color), .175) !important;
+        }
+
+        .card-img-top {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: cover;
+            padding: 2%;
+        }
+    </style>
+
 </head>
-<body >
 
-    <header>
-            
-        <nav class="nav-bar black">
-            <div style="display: flex; flex-direction: row; justify-content: space-between; height: 80px;">
-                <img id="menu" onclick='toggleMenu()' style="height: 30px; width: 30px;" src="../static/images/hamburger-icon.png" alt="=">
-                <div class="logo">
-                    <a href="{{url_for('home')}}">
-                        <img src="../static/images/lekhana_logp.png" alt="Lekhana">
-                    </a>
-                </div> 
-            </div>
-            
-            <ul class="nav-links">
-                <li><a class="" href="{{url_for('home')}}">HOME</a></li>
-                {% if current_user.is_authenticated %}
-                <li><a class="active" href="{{url_for('recommend')}}">RECOMMENDATIONS</a></li>
-                {%endif%}
-                <li><a href="{{url_for('home')}}#Trending">TRENDING</a></li>
-                {% if current_user.is_authenticated %}
-                    <li><a href="{{url_for('logout')}}">LOGOUT</a></li>
-                {% else %}
-                    <li><a href="{{url_for('login')}}">LOGIN</a></li>
-                {%endif%}
-            </ul>
+<body data-bs-theme="dark">
 
-            
-        </nav>
-        </header>
+    <div>
+        <nav id="navbar" style="padding: 24px;" class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand text text-warning" href="{{url_for('home')}}">
+                    <span class="border border-warning" style="padding: 10px;">LEKHANA</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
+                    aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-    <h2 class="searchTitle">: {{ search }}</h1>
-
-        <br>
-
-        <div class="bookHolder"> 
-            {% for volumeInfo in data %}
-            <div class="template">
-                <div class="book">
-                    {%if 'imageLinks' in volumeInfo %}
-                    <img class="bookImg" src="{{volumeInfo['imageLinks']['thumbnail']}}" alt="No Image Available">
-                    {%else%}
-                    <img class="bookImg" src="" alt="No Image Available">
-                    {%endif%}
-                    <div class="details">
-                        <a class="bookTitle" href="{{url_for('get_book', book_name = volumeInfo['title'], id=volumeInfo['infoLink'].split('=')[1][0:12])}}"><h2>{{volumeInfo['title']}}</h2></a>
-                        {%if 'authors' in volumeInfo %}
-                        <h4 class="author">by {{volumeInfo['authors'][0]}}</h4>
-                        <br>
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link text text-warning" aria-current="page"
+                                href="{{url_for('home')}}">HOME</a></li>
+                        {% if current_user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('recommend')}}">RECOMMENDATIONS</a>
+                        </li>
                         {%endif%}
-                    </div>
-                    
-                </div>
-                <div class="bookRating">
-                    {%if volumeInfo['averageRating'] != "" and 'averageRating' in volumeInfo %}
-                        <h3 class="stars">{{volumeInfo['averageRating']}}</h3>
-                        <img class="star-icon" src="../static/images/star-icon.png" alt="Stars">
-                    {% else %}
-                        <h3 class="stars">(No Rating)</h3>
-                    {% endif %}
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('home')}}#Trending">TRENDING</a></li>
+                        {% if current_user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('logout')}}">LOGOUT</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('login')}}">LOGIN</a></li>
+                        {%endif%}
+                    </ul>
+                    <button style="margin-right: 2%;" onclick="changeTheme()" class="btn btn-outline-warning"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-brightness-high" viewBox="0 0 16 16">
+                            <path
+                                d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                        </svg></button>
+                    <form action="{{ url_for('get_data') }}" method="post" class="d-flex" role="search">
+                        <input name="search" class="form-control me-2" type="search" placeholder="Search for Any Book"
+                            value="{{search}}" aria-label="Search">
+                        <button class="btn btn-outline-warning" type="submit">Search</button>
+                    </form>
                 </div>
             </div>
-            <hr>
-            {%endfor%}
+        </nav>
 
+        <div class="bg-body-primary">
+            <h5 class="searchTitle">: {{ search }}</h5>
 
+            <br>
+            <center>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link text text-warning" onclick="prevPage(-1)" href="#"
+                                aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a onclick="nextPage(-2)" href="#"
+                                class="number page-link text text-warning">...</a></li>
+                        {% for i in range(1, len//10+1) %}
+                        <li class="page-item"><a onclick="Page({{i-1}})" href="#"
+                                class="number page-link text text-warning">{{i}}</a></li>
+                        {%endfor%}
+                        <li class="page-item"><a onclick="nextPage(2)" href="#"
+                                class="number page-link text text-warning">...</a></li>
+                        <li class="page-item">
+                            <a class="page-link text text-warning" onclick="nextPage(1)" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </center>
+            <center>
+                {% for volumeInfo in data %}
+                <div class="page{{data.index(volumeInfo)//10}} page">
+                    <div class="card mb-3 shadow-lg p-3 mb-5 bg-body-tertiary"
+                        style="max-width: 1000px; margin-bottom: 50px;">
+                        <div class="row g-0">
+                            <div class="col-sm-4">
+                                {%if 'imageLinks' in volumeInfo %}
+                                <a
+                                    href="{{url_for('get_book', book_name = volumeInfo['title'], id=volumeInfo['infoLink'].split('=')[1][0:12])}}"><img
+                                        class="bookImg card-img-top image-fluid rounded-start" style="height:inherit;"
+                                        src="{{volumeInfo['imageLinks']['thumbnail']}}" alt="No Image Available"></a>
+                                {%else%}
+                                <a
+                                    href="{{url_for('get_book', book_name = volumeInfo['title'], id=volumeInfo['infoLink'].split('=')[1][0:12])}}"><img
+                                        class="bookImg card-img-top image-fluid rounded-start"
+                                        src="../static/images/book-placeholder.jpg" alt="No Image Available"></a>
+                                {%endif%}
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-body">
+                                    <a class="bookTitle card-title"
+                                        href="{{url_for('get_book', book_name = volumeInfo['title'], id=volumeInfo['infoLink'].split('=')[1][0:12])}}">
+                                        <h3 class="text-warning text">{{volumeInfo['title']}}</h3>
+                                    </a>
+                                    <br>
+                                    {%if 'authors' in volumeInfo %}
+                                    <h4 class="card-text">by {{volumeInfo['authors'][0]}}</h4>
+                                    <br>
+                                    {%endif%}
+                                    <div class="Stars" style="--rating: {{volumeInfo['averageRating']}}"><span style="font-size: small;">{{volumeInfo['averageRating']}} Google Books rating</span></div>
+                                    <div class="Stars" style="--rating: 0"><span style="font-size: small;">0 Lekhana rating</span></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                {%endfor%}
+            </center>
         </div>
+        <center>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link text text-warning" onclick="prevPage(-1)" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link text text-warning" onclick="nextPage(1)" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </center>
+        <footer class="bg-body-tertiary">
+            <a class="links text text-warning"
+                href="https://www.linkedin.com/in/kaustubh-mani-tripathi-9b465b258/">LinkedIn<svg
+                    xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-linkedin"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                </svg></a>
+            <a class="links text text-warning" href="https://www.copsiitbhu.co.in/">COPs</a>
+            <a class="links text text-warning" href="https://github.com/kmtGryffindor20">Github<svg
+                    xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-github"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                </svg></a>
+            <br>
+            <br>
+            <p>Created by Kaustubh Mani Tripathi - IIT BHU</p>
+        </footer>
+
+    </div>
 
 </body>
+<script src="../static/searchScript.js"></script>
+<script src="../static/indexScript.js"></script>
+
 </html>
