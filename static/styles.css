@@ -33,7 +33,7 @@ body{
     line-height: 1;
     
     &::before {
-      content: '&#9733;&#9733;&#9733;&#9733;&#9733;';
+      content: '★★★★★';
       letter-spacing: 3px;
       background: linear-gradient(90deg, var(--star-bg) var(--percent), var(--star-color) var(--percent));
       background-clip: text;
