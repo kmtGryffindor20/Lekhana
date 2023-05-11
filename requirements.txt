@@ -1,4 +1,3 @@
-pip install --upgrade pip
 pip install requests
 pip install flask
 pip install Flask-WTF
