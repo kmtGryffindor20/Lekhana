@@ -32,7 +32,7 @@
 
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link text text-warning" aria-current="page" href="{{url_for('home')}}">HOME</a></li>
+                <li class="nav-item"><a class="nav-link text" href="{{url_for('home')}}">HOME</a></li>
                 {% if current_user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link" href="{{url_for('recommend')}}">RECOMMENDATIONS</a></li>
                 {%endif%}
@@ -40,7 +40,7 @@
                 {% if current_user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link" href="{{url_for('logout')}}">LOGOUT</a></li>
                 {% else %}
-                <li class="nav-item" ><a class="nav-link" href="{{url_for('login')}}">LOGIN</a></li>
+                <li class="nav-item" ><a class="nav-link text-warning" href="{{url_for('login')}}">LOGIN</a></li>
                 {%endif%}
             </ul>
             <button style="margin-right: 2%;" onclick="changeTheme()" class="btn btn-outline-warning"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16">
