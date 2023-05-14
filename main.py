@@ -30,7 +30,8 @@ login_manger.login_view = 'login'
     # initializing DB
 
 db = SQLAlchemy(app)  # Creating an SQL database in the app
-db.create_all()
+with app.app_context():
+    db.create_all()
 
 # This is to Model the database according to the data required to be filled in
 class Users(db.Model, UserMixin):
